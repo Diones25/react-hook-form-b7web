@@ -12,7 +12,7 @@
   "dependencies": {
     "@tanstack/react-query": "^5.40.0",
     "@tanstack/react-query-devtools": "^5.40.0",
-    "axios": "^1.7.2",
+    "axios": "^1.9.0",
     "react": "^18.2.0",
     "react-com-vite": "file:",
     "react-dom": "^18.2.0",
