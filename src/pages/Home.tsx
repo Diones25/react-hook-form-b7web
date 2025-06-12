@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { Inputs } from '../types/Inputs';
+import { SignUpForm } from '../types/SignUpForm';
 
 
 const Home = () => {
@@ -7,9 +7,9 @@ const Home = () => {
     handleSubmit,
     register,
     formState: { errors }
-  } = useForm<Inputs>();
+  } = useForm<SignUpForm>();
 
-  const handleFormSubmit: SubmitHandler<Inputs> = (data) => {
+  const handleFormSubmit: SubmitHandler<SignUpForm> = (data) => {
     console.log(data)
   }
 
