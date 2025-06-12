@@ -1,6 +1,14 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { SignUpForm } from '../types/SignUpForm';
+import { z } from 'zod'
+import { zodResolver } from "@hookform/resolvers/zod";
 import Input from '../components/Input';
+
+const SigUpForm = z.object({
+  name: z.string({ message: "Deve ser uma string" }).min(2, { message: 'Deve ter no mínimo 2 caracteres' }).max(20),
+  lastName: z.string({ message: 'Deve ser uma string' }).min(2, { message: 'Deve ter no mínimo 2 caracteres' }).optional(),
+  age: z.number({ message: 'Deve ser uma string' }).min(18, { message: 'Deve ser maior de 18' })
+})
 
 
 const Home = () => {
