@@ -17,7 +17,7 @@ const Home = () => {
 
           <div className='my-3'>
             <input
-              {...register('name')}
+              {...register('name', { required: true, minLength: 3, maxLength: 20 })}
               className='border border-white p-3 text-black'
               placeholder='Digite seu nome'
             />
@@ -25,9 +25,18 @@ const Home = () => {
 
           <div className='my-3'>
             <input
-              {...register('lastName')}
+              {...register('lastName', { pattern: /^[A-Za-z]+$/ })}
               className='border border-white p-3 text-black'
               placeholder='Digite seu sonrenome'
+            />
+          </div>
+
+          <div className='my-3'>
+            <input
+            type='number'
+              {...register('age', { min: 18, max: 120 })}
+              className='border border-white p-3 text-black'
+              placeholder='Digite sua idade'
             />
           </div>
 
