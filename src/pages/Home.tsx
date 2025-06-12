@@ -1,15 +1,19 @@
-import { useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { Inputs } from '../types/Inputs';
 
 
 const Home = () => {
   const { handleSubmit, register } = useForm<Inputs>();
 
+  const handleFormSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log(data)
+  }
+
   return (
     <>
       <div className="container mx-auto">
         
-        <form>
+        <form onSubmit={handleSubmit(handleFormSubmit)}>
 
           <div className='my-3'>
             <input
