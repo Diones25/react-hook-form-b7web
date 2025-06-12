@@ -1,11 +1,13 @@
+import Home from "./pages/Home"
+import { Providers } from "./utils/provider"
 
 const Page = () => {
 
   return (
     <>
-      <div className="container mx-auto">
-        
-      </div>
+      <Providers>
+        <Home />
+      </Providers>
     </>
   )
 }
