@@ -32,9 +32,9 @@ const Home = () => {
               {...register('name')}
               className={`border-2 ${errors.name ? 'border-red-600' : 'border-white'} p-3 text-black focus:outline-none`}
             />
-            {/* {errors.name &&
+            {errors.name &&
               <p className='text-red-600 text-sm'>{errors.name.message}</p>
-            } */}
+            }
           </div>
 
           <div className='my-2'>
@@ -42,9 +42,9 @@ const Home = () => {
               {...register('lastName')}
               className={`border-2 ${errors.lastName ? 'border-red-600' : 'border-white'} p-3 text-black focus:outline-none`}
             />
-            {/* {errors.lastName &&
+            {errors.lastName &&
               <p className='text-red-600 text-sm'>{errors.lastName.message}</p>
-            } */}
+            }
           </div>
 
 
@@ -54,9 +54,9 @@ const Home = () => {
               {...register('age', { valueAsNumber: true })}
               className={`border-2 ${errors.age ? 'border-red-600' : 'border-white'} p-3 text-black focus:outline-none`}
             />
-            {/* {errors.age &&
+            {errors.age &&
               <p className='text-red-600 text-sm'>{errors.age.message}</p>
-            } */}
+            }
           </div>
 
           <input
