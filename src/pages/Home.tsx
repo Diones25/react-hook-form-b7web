@@ -1,47 +1,63 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { SignUpForm } from '../types/SignUpForm';
 import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
-import Input from '../components/Input';
 
-const SigUpForm = z.object({
+const SignUpFormSchema = z.object({
   name: z.string({ message: "Deve ser uma string" }).min(2, { message: 'Deve ter no mínimo 2 caracteres' }).max(20),
-  lastName: z.string({ message: 'Deve ser uma string' }).min(2, { message: 'Deve ter no mínimo 2 caracteres' }).optional(),
-  age: z.number({ message: 'Deve ser uma string' }).min(18, { message: 'Deve ser maior de 18' })
+  lastName: z.string({ message: 'Deve ser uma string' }).optional(),
+  age: z.number({ message: 'Deve ser uma numero' }).min(18, { message: 'Deve ser maior de 18' })
 })
 
 
 const Home = () => {
   const {
-    control,
+    register,
     handleSubmit,
-  } = useForm<SignUpForm>();
+    formState: { errors }
+  } = useForm<z.infer<typeof SignUpFormSchema>>({
+    resolver: zodResolver(SignUpFormSchema)
+  });
 
-  const handleFormSubmit: SubmitHandler<SignUpForm> = (data) => {
+  const handleFormSubmit: SubmitHandler<z.infer<typeof SignUpFormSchema>> = (data) => {
     console.log(data)
   }
 
   return (
     <>
       <div className="container mx-auto">
-        
+
         <form onSubmit={handleSubmit(handleFormSubmit)}>
-          <Input
-            control={control}
-            name='name'
-            rules={{ required: true, minLength: 3, maxLength: 20 }}
-          />
+          <div className='my-2'>
+            <input
+              {...register('name')}
+              className={`border-2 ${errors.name ? 'border-red-600' : 'border-white'} p-3 text-black focus:outline-none`}
+            />
+            {/* {errors.name &&
+              <p className='text-red-600 text-sm'>{errors.name.message}</p>
+            } */}
+          </div>
 
-          <Input
-            control={control}
-            name='lastName'
-          />
+          <div className='my-2'>
+            <input
+              {...register('lastName')}
+              className={`border-2 ${errors.lastName ? 'border-red-600' : 'border-white'} p-3 text-black focus:outline-none`}
+            />
+            {/* {errors.lastName &&
+              <p className='text-red-600 text-sm'>{errors.lastName.message}</p>
+            } */}
+          </div>
 
-          <Input
-            control={control}
-            name='age'
-            rules={{ required: true, min: 18, max: 120 }}
-          />
+
+          <div className='my-2'>
+            <input
+              type='number'
+              {...register('age', { valueAsNumber: true })}
+              className={`border-2 ${errors.age ? 'border-red-600' : 'border-white'} p-3 text-black focus:outline-none`}
+            />
+            {/* {errors.age &&
+              <p className='text-red-600 text-sm'>{errors.age.message}</p>
+            } */}
+          </div>
 
           <input
             type="submit"
